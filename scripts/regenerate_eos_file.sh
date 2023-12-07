@@ -1,4 +1,3 @@
-/eos/ctaeos/cta/sfa_test/l2s/8000000/83/0/random_428
 file_size=$1
 eosfile=$2
 
