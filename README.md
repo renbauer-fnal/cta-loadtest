@@ -1,7 +1,7 @@
 # cta-loadtest
-Scripts for running loadtests against CTAEOS
+## Scripts for running loadtests against CTAEOS
 
-Included scripts (in order of execution):
+### Included load test scripts (in order of execution):
 1. set_tape_test_vars.sh
 Sets variables used in later test scripts, including:
 * Tape pool (from args)
@@ -55,11 +55,11 @@ Sets tape to 'full'
 Issues reclaim command for tape with `cta-admin tape reclaim`
 (This sets tape occupancy to 0 and resets the tape to not full)
 
-Other scripts:
+### Other scripts:
 1. regenerate_eos_file.sh
 This was a test script, it takes a file name and file size, deletes the file from eos and regenerates it.
 
-Usage:
+### Usage:
 1. Using run_full_tape_test.sh
 
 ./run_full_tape_test.sh \[-s stage\] \[-m nostrict\] &lt;tapepool&gt; &lt;filesize&gt;
