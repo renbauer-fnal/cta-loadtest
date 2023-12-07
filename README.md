@@ -9,7 +9,7 @@ Sets variables used in later test scripts, including:
 * Number of threads (Max of 1TB/filesize and 100)
 * Files per thread (ceil(3TB/thread_count))
 * Number of dd blocks per file (file size / 1M)
-1. stage_files_to_eos.sh
+2. stage_files_to_eos.sh
 Disables tape
 In each of up to 100 threads:
 * Skips any files that already exist in EOS
@@ -18,13 +18,13 @@ In each of up to 100 threads:
 * Subirectories in eos are created for each 1k files
 * Writes a 'done' marker to EOS to signify thread is complete
 Waits for all 100 threads to finish
-1. wait_for_write_session.sh
+3. wait_for_write_session.sh
 Waits for CTA to show 3TB+ Archive Queue
 Enables tape
 Waits for a write session to tapepool to begin
 Records write session ID in session file
 Waits for write session to finish
-1. drop_data_from_disk_and_prepare.sh
+4. drop_data_from_disk_and_prepare.sh
 Disables tape
 Waits for tape occupancy to show 3TB+
 In each of up to 100 threads:
@@ -37,20 +37,20 @@ In each of up to 100 threads:
 * Issues a prepare for each file using `xrdcp prepare`
 * Creates a 'done' marker in EOS to signify thread is complete
 Waits for all threads to finish
-1. wait_for_read_session.sh
+5. wait_for_read_session.sh
 Waits for CTA to show 3TB+ Retrieve Queue
 Enables tape
 Waits for a read session from tapepool to begin
 Records read session ID in session file
 Waits for read session to finish
-1. cleanup_eos_files.sh
+6. cleanup_eos_files.sh
 Waits for each EOS directory to show at least 92% of files are back on disk
 In each of up to 100 threads:
 * Loops over each EOS file and removes them with `eos rm`
 * Creates a 'done' marker in EOS to signify thread is complete
 * (This will also lead to them being marked deleted in CTA)
 Waits for all threads to finish
-1. reclaim_tape.sh
+7. reclaim_tape.sh
 Sets tape to 'full'
 Issues reclaim command for tape with `cta-admin tape reclaim`
 (This sets tape occupancy to 0 and resets the tape to not full)
@@ -82,7 +82,7 @@ If your file size is not a factor of 3TB/(number of threads(usually 100)), each 
 
 This will run the scripts in order above, executing an end-to-end loadtest.
 
-1. Individual Scripts
+2. Individual Scripts
 
 Each script can be run individually. Example:
 
